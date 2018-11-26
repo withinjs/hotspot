@@ -9,7 +9,7 @@ module.exports = function (callback) {
             callback(list.map(item => ({
                 source: "zhihu",
                 title: item.target.question.title,
-                url: item.target.question.url.replace(/api/, "www")
+                url: item.target.question.url.replace(/api/, "www").replace(/questions/, "question")
             })));
         })
 }
