@@ -3,24 +3,16 @@ const cookieParser = require("cookie-parser");
 const history = require("connect-history-api-fallback");
 const chalk = require("chalk");
 const bodyParser = require('body-parser');
+const path = require("path");
 const config = require("./config")
 const router = require("./routes");
 require("./schedule")
 require("./mongo")
 
 const app = express();
-app.all('*', (req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, x-access-token, UserId");
-	res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-	res.header("Access-Control-Allow-Credentials", true);
-	res.header("Content-Type", "application/json;charset=utf-8");
-	if (req.method === 'OPTIONS') {
-		res.send(200);
-	} else {
-		next();
-	}
-});
+const staticDir = path.join(__dirname, 'public');
+
+app.use("/public", express.static(staticDir))
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
 app.use(cookieParser());

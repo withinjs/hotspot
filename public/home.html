@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <title>热点</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            position: relative;
+            display: flex;
+            width: 100%;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
+        }
+
+        .header .inner {
+            margin: 0 auto;
+            width: 1000px;
+            height: 52px;
+            color: #d40b0b;
+            font-size: 24px;
+            line-height: 52px;
+        }
+
+        .content {
+            margin: 0 auto;
+            width: 1000px;
+        }
+
+        .tablist {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            border-bottom: 1px solid #f0f2f7;
+        }
+
+        .tablist .tabitem {
+            display: inline-block;
+            padding: 0 20px;
+        }
+
+        .tablist .tabitem a {
+            position: relative;
+            display: inline-block;
+            padding: 18px 0;
+            font-size: 16px;
+            line-height: 22px;
+            color: #1a1a1a;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .tablist .tabitem a.is-active {
+            font-weight: 600;
+        }
+
+        .tablist .tabitem a.is-active:after {
+            position: absolute;
+            right: 0;
+            bottom: -1px;
+            left: 0;
+            height: 3px;
+            background: #b34c4c;
+            content: "";
+        }
+
+        .list {
+            display: none;
+        }
+
+        .list.active {
+            display: block;
+        }
+
+        .list a {
+            display: block;
+            margin: 10px 0;
+            width: 1000px;
+            text-overflow: ellipsis;
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .list .order {
+            color: #a41f24
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="inner">热点</div>
+    </header>
+    <div class="content">
+        <ul class="tablist">
+            <li class="tabitem"><a class="is-active" data-target="#hupu">虎扑</a></li>
+            <li class="tabitem"><a class="" data-target="#wangyi">网易</a></li>
+            <li class="tabitem"><a class="" data-target="#zhihu">知乎</a></li>
+        </ul>
+        <div id="hupu" class="list active">
+            {HUPU}
+        </div>
+        <div id="wangyi" class="list">
+            {WANGYI}
+        </div>
+        <div id="zhihu" class="list">
+            {ZHIHU}
+        </div>
+    </div>
+    <script type="text/javascript">
+        document.querySelector(".tablist").addEventListener("click", function (e) {
+            if (e.target.tagName.toUpperCase() === "A") {
+                if (!e.target.classList.contains("is-active")) {
+                    document.querySelector(".is-active").classList.remove("is-active")
+                    document.querySelector(".active").classList.remove("active");
+                    e.target.classList.add("is-active")
+                    document.querySelector(e.target.getAttribute("data-target")).classList.add("active")
+                }
+            }
+        }, false)
+    </script>
+</body>
+
+</html>
