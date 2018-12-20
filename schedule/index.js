@@ -3,7 +3,7 @@ const platforms = require("../platforms");
 const schedule = require('node-schedule');
 const NewsModel = require("../model/news");
 const rule = new schedule.RecurrenceRule();
-rule.minute = [0, 8,10,16,15,18,22, 30,37,47, 45];
+rule.minute = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 
 schedule.scheduleJob(rule, () => {
     console.log('开始爬取，现在时间：', moment(new Date).format("YYYY-MM-DD HH:mm:ss"));
