@@ -4,8 +4,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="keywords" content="头条 热门榜单 步行街 知乎 新闻 bilibili 爆照区">
+    <meta name="description" content="今日热门榜单">
     <meta name="renderer" content="webkit" />
-    <title>热点</title>
+    <title>今日热门榜单</title>
     <style type="text/css">
         body {
             margin: 0;
@@ -13,12 +15,13 @@
         }
 
         .header {
-            position: relative;
+            position: fixed;
             display: flex;
             width: 100%;
             overflow: hidden;
             background-color: #fff;
             box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
+            z-index: 9
         }
 
         .header .inner {
@@ -32,6 +35,7 @@
 
         .content {
             margin: 0 auto;
+            padding: 52px 0 15px;
             width: 1000px;
         }
 
@@ -100,13 +104,15 @@
 
 <body>
     <header class="header">
-        <div class="inner">热点</div>
+        <div class="inner">热门榜单</div>
     </header>
     <div class="content">
         <ul class="tablist">
             <li class="tabitem"><a class="is-active" data-target="#hupu">虎扑</a></li>
             <li class="tabitem"><a class="" data-target="#wangyi">网易</a></li>
             <li class="tabitem"><a class="" data-target="#zhihu">知乎</a></li>
+            <li class="tabitem"><a class="" data-target="#bilibili">bilibili</a></li>
+            <li class="tabitem"><a class="" data-target="#xueqiu">雪球</a></li>
         </ul>
         <div id="hupu" class="list active">
             {HUPU}
@@ -117,15 +123,23 @@
         <div id="zhihu" class="list">
             {ZHIHU}
         </div>
+        <div id="bilibili" class="list">
+            {BILIBILI}
+        </div>
+        <div id="xueqiu" class="list">
+            {XUEQIU}
+        </div>
     </div>
     <script type="text/javascript">
-        document.querySelector(".tablist").addEventListener("click", function (e) {
-            if (e.target.tagName.toUpperCase() === "A") {
-                if (!e.target.classList.contains("is-active")) {
-                    document.querySelector(".is-active").classList.remove("is-active")
-                    document.querySelector(".active").classList.remove("active");
-                    e.target.classList.add("is-active")
-                    document.querySelector(e.target.getAttribute("data-target")).classList.add("active")
+        var $ = document.querySelector.bind(document);
+        $(".tablist").addEventListener("click", function (e) {
+            var target = e.target;
+            if (target.tagName.toUpperCase() === "A") {
+                if (!target.classList.contains("is-active")) {
+                    $(".is-active").classList.remove("is-active")
+                    $(".active").classList.remove("active");
+                    target.classList.add("is-active")
+                    $(target.getAttribute("data-target")).classList.add("active")
                 }
             }
         }, false)
