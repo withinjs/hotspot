@@ -12,7 +12,7 @@ require("./mongo")
 const app = express();
 const staticDir = path.join(__dirname, 'public');
 
-app.use("/public", express.static(staticDir))
+app.use(express.static(staticDir))
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
 app.use(cookieParser());

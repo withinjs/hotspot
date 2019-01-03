@@ -15,6 +15,7 @@ const handler = (req, res, conditions) => {
 }
 
 router.get("/hupu", (req, res) => handler(req, res, { source: "hupu" }));
+router.get("/bzq", (req, res) => handler(req, res, { source: "bzq" }));
 router.get("/wangyi", (req, res) => handler(req, res, { source: "wangyi" }));
 router.get("/zhihu", (req, res) => handler(req, res, { source: "zhihu" }));
 router.get("/bilibili", (req, res) => handler(req, res, { source: "bilibili" }));
